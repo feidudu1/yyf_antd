@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <Button disabled>hello</Button>
-      <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
+      <Button btnType={ButtonType.Primary} size={ButtonSize.Large} autoFocus>
         hello
       </Button>
       <Button btnType={ButtonType.Link} href="http://www.baidu.com" disabled>
