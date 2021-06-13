@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
 import MenuContext, { TSelectCallback, IMenuContext } from "./context";
+import { IMenuItemProps } from "./menuItem";
 
 type TMode = "vertical" | "horizontal";
 
@@ -16,7 +17,7 @@ const Menu: React.FC<IMenuProps> = (props) => {
   const { children, defaultIndex, mode, onSelect, className, style } = props;
 
   const classes = classNames("menu", className, {
-    ["vertical"]: mode === "vertical",
+    vertical: mode === "vertical",
   });
 
   const [activeIndex, setActiveIndex] = useState(defaultIndex);
@@ -33,10 +34,25 @@ const Menu: React.FC<IMenuProps> = (props) => {
     onSelect: handleClick,
   };
 
+  const renderChildren = () => {
+    return React.Children.map(children, (child, index) => {
+      const childElement =
+        child as React.FunctionComponentElement<IMenuItemProps>;
+      const { displayName } = childElement.type;
+      if (displayName === "MenuItem") {
+        return React.cloneElement(childElement, { index });
+      } else {
+        console.error(
+          "Warning: menu has a child whitch is not a MenuItem Component"
+        );
+      }
+    });
+  };
+
   return (
     <ul style={style} className={classes}>
       <MenuContext.Provider value={passedContext}>
-        {children}
+        {renderChildren()}
       </MenuContext.Provider>
     </ul>
   );

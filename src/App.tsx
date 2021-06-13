@@ -1,6 +1,7 @@
 import React from "react";
 import Button, { ButtonType, ButtonSize } from "./components/Button/button";
-import { Menu, MenuItem } from "./components/Menu/index";
+import Menu from "./components/Menu/menu";
+import MenuItem from "./components/Menu/menuItem";
 function App() {
   return (
     <div className="App">
