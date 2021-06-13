@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import classNames from "classnames";
-import MenuContext, { TSelectCallback, IMenuContext } from "./context";
+import MenuContext, { TSelectCallback, IMenuContext, TMode } from "./context";
 import { IMenuItemProps } from "./menuItem";
-
-type TMode = "vertical" | "horizontal";
-
 export interface IMenuProps {
   defaultIndex?: number;
   mode?: TMode;
@@ -18,6 +15,7 @@ const Menu: React.FC<IMenuProps> = (props) => {
 
   const classes = classNames("menu", className, {
     vertical: mode === "vertical",
+    horizontal: mode !== "vertical",
   });
 
   const [activeIndex, setActiveIndex] = useState(defaultIndex);
@@ -32,6 +30,7 @@ const Menu: React.FC<IMenuProps> = (props) => {
   const passedContext: IMenuContext = {
     index: activeIndex || 0,
     onSelect: handleClick,
+    mode,
   };
 
   const renderChildren = () => {
@@ -39,8 +38,8 @@ const Menu: React.FC<IMenuProps> = (props) => {
       const childElement =
         child as React.FunctionComponentElement<IMenuItemProps>;
       const { displayName } = childElement.type;
-      if (displayName === "MenuItem") {
-        return React.cloneElement(childElement, { index });
+      if (displayName === "MenuItem" || displayName === "SubMenu") {
+        return React.cloneElement(childElement, { index }); // 可以让menuItem自动获得index，不用一个一个传index值
       } else {
         console.error(
           "Warning: menu has a child whitch is not a MenuItem Component"

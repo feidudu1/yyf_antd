@@ -1,10 +1,12 @@
 import { createContext } from "react";
 
 export type TSelectCallback = (selectedIndex: number) => void;
+export type TMode = "vertical" | "horizontal";
 
 export interface IMenuContext {
   index: number;
   onSelect?: TSelectCallback;
+  mode?: TMode;
 }
 
 const MenuContext = createContext<IMenuContext>({

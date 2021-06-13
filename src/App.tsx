@@ -2,6 +2,7 @@ import React from "react";
 import Button, { ButtonType, ButtonSize } from "./components/Button/button";
 import Menu from "./components/Menu/menu";
 import MenuItem from "./components/Menu/menuItem";
+import SubMenu from "./components/Menu/subMenu";
 function App() {
   return (
     <div className="App">
@@ -11,9 +12,14 @@ function App() {
           onSelect={(index) => {
             console.log("select " + index);
           }}
+          // mode={"vertical"}
         >
-          <MenuItem index={0}>hi</MenuItem>
-          <MenuItem index={1}>feifei</MenuItem>
+          <MenuItem>hi</MenuItem>
+          <MenuItem>feifei</MenuItem>
+          <SubMenu title={"submenu demo"}>
+            <MenuItem> sub hi</MenuItem>
+            <MenuItem>sub feifei</MenuItem>
+          </SubMenu>
         </Menu>
       </div>
       <div title={"button_test"}>
