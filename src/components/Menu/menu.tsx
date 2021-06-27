@@ -8,10 +8,19 @@ export interface IMenuProps {
   className?: string;
   onSelect?: TSelectCallback;
   style?: React.CSSProperties;
+  defaultOpenIndex?: number[];
 }
 
 const Menu: React.FC<IMenuProps> = (props) => {
-  const { children, defaultIndex, mode, onSelect, className, style } = props;
+  const {
+    children,
+    defaultIndex,
+    mode,
+    onSelect,
+    className,
+    style,
+    defaultOpenIndex,
+  } = props;
 
   const classes = classNames("menu", className, {
     vertical: mode === "vertical",
@@ -31,6 +40,7 @@ const Menu: React.FC<IMenuProps> = (props) => {
     index: activeIndex || 0,
     onSelect: handleClick,
     mode,
+    defaultOpenIndex,
   };
 
   const renderChildren = () => {
@@ -60,6 +70,7 @@ const Menu: React.FC<IMenuProps> = (props) => {
 Menu.defaultProps = {
   defaultIndex: 0,
   mode: "horizontal",
+  defaultOpenIndex: [],
 };
 
 export default Menu;

@@ -16,7 +16,11 @@ const SubMenu: React.FC<ISubMenuProps> = ({
   children,
 }) => {
   const context = useContext(MenuContext);
-  const [menuOpen, setOpen] = useState(false);
+  const { mode } = context;
+  const opendDefaultIndex = context.defaultOpenIndex as number[];
+  const isOpen =
+    index && mode === "vertical" ? opendDefaultIndex.includes(index) : false;
+  const [menuOpen, setOpen] = useState(isOpen);
   const classes = classNames(
     "menu-item",
     "submenu-item",
@@ -39,10 +43,9 @@ const SubMenu: React.FC<ISubMenuProps> = ({
     }, 300);
   };
 
-  const clickEvents =
-    context.mode === "vertical" ? { onClick: handleClick } : {};
+  const clickEvents = mode === "vertical" ? { onClick: handleClick } : {};
   const hoverEvents =
-    context.mode !== "vertical"
+    mode !== "vertical"
       ? {
           onMouseEnter: (e: React.MouseEvent) => handleMouse(e, true),
           onMouseLeave: (e: React.MouseEvent) => handleMouse(e, false),

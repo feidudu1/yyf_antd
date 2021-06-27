@@ -12,7 +12,8 @@ function App() {
           onSelect={(index) => {
             console.log("select " + index);
           }}
-          // mode={"vertical"}
+          mode={"vertical"}
+          defaultOpenIndex={[2]}
         >
           <MenuItem>hi</MenuItem>
           <MenuItem>feifei</MenuItem>

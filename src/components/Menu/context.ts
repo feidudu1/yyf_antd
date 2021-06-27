@@ -7,6 +7,7 @@ export interface IMenuContext {
   index: number;
   onSelect?: TSelectCallback;
   mode?: TMode;
+  defaultOpenIndex?: number[];
 }
 
 const MenuContext = createContext<IMenuContext>({
