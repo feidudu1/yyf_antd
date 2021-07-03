@@ -12,7 +12,7 @@ library.add(fas);
 function App() {
   return (
     <div className="App">
-      <Icon icon="coffee" size="10x" theme="danger" />
+      <Icon icon="coffee" size="10x" theme="primary" />
       <div title={"menu_test"}>
         <Menu
           defaultIndex={0}
