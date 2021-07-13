@@ -22,6 +22,25 @@ module.exports = {
       use: ["style-loader", "css-loader", "sass-loader"],
       include: path.resolve(__dirname, "../src/"),
     });
+    config.module.rules.push({
+      test: /\.tsx?&/,
+      use: [
+        {
+          loader: require.resolve("react-docgen-typescript-loader"),
+          options: {
+            shouldExtractLiteralValuesFromEnum: true,
+            propFilter: (prop) => {
+              if (prop.parent) {
+                // 将node_modules的props过滤掉
+                return !prop.parent.fileName.includes("node_modules");
+              }
+              return true;
+            },
+          },
+        },
+      ],
+    });
+    config.resolve.extensions.push(".ts", ".tsx");
 
     return config;
   },
