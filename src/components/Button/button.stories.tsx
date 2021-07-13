@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
 import Button from "./button";
+import { withInfo } from "@storybook/addon-info";
 
 const defaultButton = () => (
   <Button onClick={action("clicked")}> default button </Button>
@@ -27,6 +28,17 @@ const buttonWithType = () => (
 );
 
 storiesOf("Button Component", module)
+  .addParameters({
+    info: {
+      text: `
+      ## this is a header
+      ~~~js
+      const a = 'hello'
+      ~~~
+      `,
+      inline: true,
+    },
+  })
   .add("默认Button", defaultButton)
-  .add("不同尺寸的 Button", buttonWithSize)
+  .add("不同尺寸的 Button", buttonWithSize, { info: false })
   .add("不同类型的 Button", buttonWithType);

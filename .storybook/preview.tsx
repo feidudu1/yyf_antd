@@ -1,4 +1,5 @@
 import React from "react";
+import { withInfo } from "@storybook/addon-info";
 
 import "!style-loader!css-loader!sass-loader!../src/styles/index.scss";
 
@@ -16,6 +17,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  info: { inline: true, header: false },
 };
 
-export const decorators = [CenterDecorator];
+export const decorators = [CenterDecorator, withInfo];
