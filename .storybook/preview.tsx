@@ -3,11 +3,18 @@ import { withInfo } from "@storybook/addon-info";
 
 import "!style-loader!css-loader!sass-loader!../src/styles/index.scss";
 
-const styles: React.CSSProperties = {
-  textAlign: "center",
+const wrapperStyle: React.CSSProperties = {
+  padding: "20px 40px",
 };
 
-const CenterDecorator = (storyFn: any) => <div style={styles}>{storyFn()}</div>;
+const storyWrapper = (stroyFn: any) => (
+  <div style={wrapperStyle}>
+    <h3>组件演示</h3>
+    {stroyFn()}
+  </div>
+);
+
+const CenterDecorator = (storyFn: any) => storyWrapper(storyFn);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
