@@ -12,6 +12,7 @@ export type ButtonType = "primary" | "default" | "danger" | "link";
 
 interface BaseButtonProps {
   className?: string;
+  /**设置 button 的禁用 */
   disabled?: boolean;
   size?: ButtonSize;
   btnType?: ButtonType;
@@ -24,6 +25,14 @@ type AnchorButtonProps = BaseButtonProps & AnchorHTMLAttributes<HTMLElement>;
 
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
+/**
+ *
+ * ## 这是我们的第一个button组件注释
+ * ~~~js
+ * import {Button} from 'vikingship'
+ * ~~~
+ * @param props
+ */
 export const Button: FC<ButtonProps> = (props) => {
   const { btnType, disabled, size, href, className, children, ...resProps } =
     props;

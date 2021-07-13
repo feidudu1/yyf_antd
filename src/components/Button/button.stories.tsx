@@ -39,6 +39,6 @@ storiesOf("Button Component", module)
       inline: true,
     },
   })
-  .add("默认Button", defaultButton)
+  .add("Button", defaultButton)
   .add("不同尺寸的 Button", buttonWithSize, { info: false })
   .add("不同类型的 Button", buttonWithType);
