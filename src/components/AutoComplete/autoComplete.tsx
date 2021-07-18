@@ -12,7 +12,7 @@ import Input, { InputProps } from "../Input/input";
 import Icon from "../Icon/icon";
 import Transition from "../Transition/transition";
 import useDebounce from "../../hooks/useDebounce";
-// import useClickOutside from "../../hooks/useClickOutside";
+import useClickOutside from "../../hooks/useClickOutside";
 
 // 1、支持自定义模版
 // 2、添加loading
@@ -48,11 +48,14 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
   const componentRef = useRef<HTMLDivElement>(null);
 
   const debouncedValue = useDebounce(inputValue, 500);
-  // useClickOutside(componentRef, () => {
-  //   setSugestions([]);
-  // });
+
+  useClickOutside(componentRef, () => {
+    setSugestions([]);
+  });
 
   useEffect(() => {
+    //搜索a，然后点击suggestion中出现action时，点击action则又会触发一次fetchSuggestions，所以需要在useEffect中添加triggerSearch限制
+    // 利用了useRef的值是定值的特性定义triggerSearch这个flag
     if (debouncedValue && triggerSearch.current) {
       setSugestions([]);
       const results = fetchSuggestions(debouncedValue);
@@ -76,7 +79,8 @@ export const AutoComplete: FC<AutoCompleteProps> = (props) => {
       setShowDropdown(false);
     }
     setHighlightIndex(-1);
-  }, [debouncedValue, fetchSuggestions]); // 这里的debouncedValue就是在inputValue的基础上加了debounce  可以将该useEffect中用到的debouncedValue全部换成inputValue
+  }, [debouncedValue, fetchSuggestions]);
+  // 这里的debouncedValue就是在inputValue的基础上加了debounce  可以将该useEffect中用到的debouncedValue全部换成inputValue
 
   const highlight = (index: number) => {
     if (index < 0) index = 0;
