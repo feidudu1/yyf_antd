@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import classNames from "classnames";
 import MenuContext, { TSelectCallback, IMenuContext, TMode } from "./context";
 import { IMenuItemProps } from "./menuItem";
+
 export interface IMenuProps {
   defaultIndex?: number;
   mode?: TMode;

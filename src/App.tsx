@@ -10,6 +10,7 @@ const App: React.FC = () => {
       formData.append(uploadedFile.name, uploadedFile);
       axios
         .post("https://jsonplaceholder.typicode.com/posts", formData, {
+          // jsonplaceholder只能上传比较小的文件，大的要报错
           headers: {
             "Content-Type": "multipart/form-data",
           },
