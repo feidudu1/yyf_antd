@@ -35,10 +35,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "clearn": "rimraf ./build",
+    "build": "yarn run clearn && yarn run build-ts && yarn run build-css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "node-sass ./src/styles/index.scss ./build/index.css",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
@@ -90,7 +92,9 @@
     "@storybook/preset-scss": "^1.0.3",
     "@storybook/react": "^6.3.3",
     "css-loader": "^5.2.6",
+    "raf": "^3.4.1",
     "react-docgen-typescript-loader": "^3.7.2",
+    "rim": "^0.0.0",
     "sass": "^1.35.2",
     "sass-loader": "^10.1.1",
     "style-loader": "^2.0.0"
