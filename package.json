@@ -1,7 +1,27 @@
 {
   "name": "yyf_antd",
   "version": "0.1.0",
-  "private": true,
+  "description": "react UI components",
+  "author": "feidudu1",
+  "private": false,
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "keywords": [
+    "Component",
+    "UI",
+    "React",
+    "Antd"
+  ],
+  "homepage": "https://github.com/feidudu1/yyf_antd",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/feidudu1/yyf_antd"
+  },
+  "files": [
+    "dist"
+  ],
   "resolutions": {
     "babel-loader": "8.1.0",
     "webpack": "4.44.2"
@@ -35,14 +55,15 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "clearn": "rimraf ./build",
+    "clearn": "rimraf ./dist",
     "build": "yarn run clearn && yarn run build-ts && yarn run build-css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "build-ts": "tsc -p tsconfig.build.json",
-    "build-css": "node-sass ./src/styles/index.scss ./build/index.css",
+    "build-css": "node-sass ./src/styles/index.scss ./dist/index.css",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "prepublish": "yarn run build"
   },
   "eslintConfig": {
     "extends": [
