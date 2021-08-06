@@ -13,6 +13,7 @@
 #packages
 /dist
 # storybook build静态文件
+#
 /storybook-static
 
 # misc

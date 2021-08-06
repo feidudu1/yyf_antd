@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - "15"
+
+cache:
+  directories:
+    - node_modules
+env:
+  - CI=true
+script:
+  - yarn run build-storybook
+deploy:
+  provider: pages
+  skip_cleanup: true
+  ## 值跟travis中的Environment Variables变量名一样
+  github_token: $github_for_yyfantd_token
+  local_dir: storybook-static
+  on:
+    branch: test_travis
